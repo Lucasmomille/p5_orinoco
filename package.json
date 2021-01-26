@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Lucasmomille/p5_orinoco#readme",
   "dependencies": {
-    "bootstrap": "^4.5.3"
+    "bootstrap": "^4.5.3",
+    "express": "^4.17.1"
   }
 }
