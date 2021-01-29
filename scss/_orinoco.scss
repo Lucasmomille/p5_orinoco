@@ -22,3 +22,12 @@ body {
         overflow: hidden;
     }
 }
+
+.product {
+    &__link {
+        width: 49%;
+    }
+    &__text {
+        width: 49%;
+    }
+}

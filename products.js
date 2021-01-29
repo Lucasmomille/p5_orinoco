@@ -18,10 +18,10 @@ async function main (){
     .then(function() {displayProduct();})
     
 } */
+///////////////////////////////Display the selected product///////////////
 
 const displayProduct = async() => {
     await fetchProduct();
-    console.log(products);
     const template = document.querySelector("#template");
     const cloneTemplate = document.importNode(template.content, true);
 
@@ -29,10 +29,23 @@ const displayProduct = async() => {
     cloneTemplate.getElementById("p_img").src = products.imageUrl;
     cloneTemplate.getElementById("p_description").textContent = products.description;
     cloneTemplate.getElementById("p_price").textContent = products.price + "€";
-    
+    // importer fonction numberWithSpace de script.js
     console.log(cloneTemplate.getElementById("p_img").src)
-
+  
     document.querySelector(".row-product").appendChild(cloneTemplate);
+
+///// Multiple choice varnish
+
+    const displayVarnish = () => {
+        const varnishResult = document.querySelector(".varnish");
+
+        varnishResult.innerHTML = (
+            products.varnish.map(element => (
+                `<option value="${element}" id="p_varnish">${element}</option>`
+                ))
+        );
+    }
+    displayVarnish();
 }
 
 displayProduct();

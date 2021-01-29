@@ -37,13 +37,16 @@
         <div class="row row-product">
           <template id="template">
             <div class="col-10 mx-auto">
-              <div class="card product mb-3">
+              <div class="card d-flex flex-row product mb-3">
                   <a class="product__link" href="" id="p_link"> 
                   <img src="" alt="meuble en chêne" id="p_img" class="card-img-top product__img">
                   </a>
-                  <div class="card-body" id="test">
+                  <div class="card-body product__text" id="test">
                       <p class="card-title product__name" id="p_name"></p>
-                      <p class="card-text product__varnish" id="p_varnish"></p>
+                      <label for="option" class="card-text product__option" id="p_option">Choisissez votre vernis :</label>
+                      <select name="option" class="varnish" id="option">
+                      </select>
+                  
                       <p class="card-text product__description" id="p_description"></p>
                       <p class="card-text product__price" id="p_price"></p>
                   </div>

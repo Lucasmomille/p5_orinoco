@@ -9916,4 +9916,11 @@ body {
   overflow: hidden;
 }
 
+.product__link {
+  width: 49%;
+}
+.product__text {
+  width: 49%;
+}
+
 /*# sourceMappingURL=style.css.map */
