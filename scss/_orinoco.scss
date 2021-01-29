@@ -1,0 +1,24 @@
+
+body {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.navbar {
+    background-color: $color-primary;
+}
+
+.nav__link {
+    font-size: 18px;
+    color: $black !important;
+}
+
+
+.furniture {
+
+    &__link {
+        height: 230px;
+        overflow: hidden;
+    }
+}
