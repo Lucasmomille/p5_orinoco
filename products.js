@@ -30,8 +30,11 @@ const displayProduct = async() => {
     cloneTemplate.getElementById("p_description").textContent = products.description;
     cloneTemplate.getElementById("p_price").textContent = products.price + "€";
     // importer fonction numberWithSpace de script.js
-    console.log(cloneTemplate.getElementById("p_img").src)
-  
+    cloneTemplate.getElementById("btn").setAttribute("data-price", products.price);
+    cloneTemplate.getElementById("btn").setAttribute("data-id", products._id);
+    cloneTemplate.getElementById("btn").setAttribute("data-name", products.name);
+    cloneTemplate.getElementById("btn").setAttribute("data-url", new URL(window.location.href));
+    console.log(cloneTemplate.getElementById("btn"));
     document.querySelector(".row-product").appendChild(cloneTemplate);
 
 ///// Multiple choice varnish
