@@ -12,14 +12,14 @@
         .then(response => response.json(), error => alert(error));
         console.log(furnitures);
     }
-    
+    //return pour valider
     fetchFurniture();
 
 ///Afficher les produits
     const showFurnitures = async() => {
         await fetchFurniture(); // on attends l'API
         furnitureResult.innerHTML = ( // on mets les données souhaitées dans la zone du html voulue
-            furnitures  // on sait ce qu'est furnitures dans fetchFurniture
+            furnitures  // on sait ce qu'est furnitures dans fetchFurniture // let furnitures = fetchFurniture() avec datas
                 //.filter(furniture => furniture.name.toLowerCase())
                 .map(furniture => ( // for each furniture of furnitures en qq sorte, map fait un array
                     //templates literals
@@ -46,7 +46,8 @@
     showFurnitures()
 
     // séparer les miliers pour les prix
-
+    // utiliser Intl.NumberFormat
     function numberWithSpace(x){
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
+    //export default numberWithSpace;
