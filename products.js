@@ -1,3 +1,4 @@
+import {onLoadCartNumbers} from './test.js';
 // Global variables
 let productId;
 let product;
@@ -125,11 +126,6 @@ const displayVarnish = () => {
             sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
         }
         // onload keep track basket
-        function onLoadCartNumbers() {
-            let productNumbers = sessionStorage.getItem("cartNumbers");
-            if(productNumbers) {
-                document.querySelector("#countCart").textContent = productNumbers;
-            }
-        }
-        
-        onLoadCartNumbers()
+
+
+onLoadCartNumbers()
