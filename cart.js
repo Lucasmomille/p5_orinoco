@@ -7,7 +7,7 @@ function getProductInCart() {
     cart = JSON.parse(sessionStorage.getItem("productsInCart"));
 }
 
-getProductInCart();
+
 console.log(cart)
 
 function displayCart() {
@@ -20,11 +20,22 @@ function displayCart() {
             productContainer.innerHTML += `
             <tr class="product"> 
             <th>${item.name}</th>
+            <th>${item.inCart}</th>
             <th>${item.price}</th>
             </tr>
             `
         })
     }
+
+    // Remove all items
+    let btnDeleteFullCart = document.querySelector("#delete-command");
+
+    btnDeleteFullCart.addEventListener('click', function(){
+    sessionStorage.clear();
+    
+    productContainer.innerHTML = "";
+})
 }
 
 displayCart();
+
