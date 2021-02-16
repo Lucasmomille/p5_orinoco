@@ -1,4 +1,5 @@
-import {onLoadCartNumbers} from './test.js';
+
+import {onLoadCartNumbers} from './utils.js';
 onLoadCartNumbers();
 
 let cart;
@@ -12,6 +13,7 @@ console.log(cart)
 
 function displayCart() {
     getProductInCart();
+    
     let productContainer = document.querySelector("#cart-tablebody");
     console.log(productContainer)
     if (cart && productContainer){
@@ -27,6 +29,12 @@ function displayCart() {
         })
     }
 
+    // Display total cost
+    let total = document.querySelector("#total");
+    let totalCost = JSON.parse(sessionStorage.getItem("totalCost"));
+    console.log(total);
+    total.innerHTML = totalCost;
+
     // Remove all items
     let btnDeleteFullCart = document.querySelector("#delete-command");
 
@@ -34,7 +42,9 @@ function displayCart() {
     sessionStorage.clear();
     
     productContainer.innerHTML = "";
-})
+    total.innerHTML = "";
+    document.querySelector("#countCart").textContent = "";
+    })
 }
 
 displayCart();

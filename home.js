@@ -1,5 +1,5 @@
-/* const { response } = require("express");
- */
+import {onLoadCartNumbers} from './utils.js';
+
 //Recupérer API 
     let furnitures;
     let furnitureResult = document.querySelector(".row-cards");
@@ -51,3 +51,5 @@
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
     //export default numberWithSpace;
+
+    onLoadCartNumbers()

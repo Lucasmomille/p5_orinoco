@@ -1,4 +1,4 @@
-import {onLoadCartNumbers} from './test.js';
+import {onLoadCartNumbers} from './utils.js';
 // Global variables
 let productId;
 let product;
@@ -30,11 +30,6 @@ const displayProduct = async() => {
     cloneTemplate.getElementById("p_img").src = product.imageUrl;
     cloneTemplate.getElementById("p_description").textContent = product.description;
     cloneTemplate.getElementById("p_price").textContent = product.price + "€";
-    // importer fonction numberWithSpace de script.js export composant
- /*    cloneTemplate.getElementById("btn").setAttribute("data-price", product.price);
-    cloneTemplate.getElementById("btn").setAttribute("data-id", product._id);
-    cloneTemplate.getElementById("btn").setAttribute("data-name", product.name);
-    cloneTemplate.getElementById("btn").setAttribute("data-url", new URL(window.location.href)); */
     document.querySelector(".row-product").appendChild(cloneTemplate);
     
     ///// Multiple choice varnish
@@ -52,25 +47,15 @@ const displayProduct = async() => {
     
     let carts = document.querySelectorAll(".btn");
     
-    console.log(carts+"ok");
-    
     for (let i=0; i < carts.length; i++){
         
         carts[i].addEventListener("click", (event)=>{
             event.preventDefault();
             cartNumbers(productInfos[i]);
+            totalCost(productInfos[i]);
+
         })
     }
-    
-    // Storage
-    /*  let addToCartBtn = document.getElementById('btn');
-    console.log(addToCartBtn);
-    addToCartBtn.addEventListener("click", function(event){
-        event.preventDefault();
-        //let productInfo = {"name": product.name, "id": product._id, "price": product.price};
-        //console.log(productInfos);
-        sessionStorage.setItem("productInfos", JSON.stringify(productInfos));
-    }) */
 }
 
 displayProduct();  
@@ -82,50 +67,86 @@ const displayVarnish = () => {
     varnishResult.innerHTML = (
         product.varnish.map(element => (
             `<option value="${element}" id="p_varnish">${element}</option>`
-            ))
-            );
-        }
+        ))
+    );
+}
         
-        // Counting number of stock product 
-        function cartNumbers(productInfo) {
-            
-            let productNumbers = sessionStorage.getItem("cartNumbers");
-            productNumbers = parseInt(productNumbers);
-            
-            if (productNumbers){
-                sessionStorage.setItem("cartNumbers", productNumbers + 1);
-                document.querySelector("#countCart").textContent = productNumbers + 1;
-            } else {
-                sessionStorage.setItem("cartNumbers", 1);
-                document.querySelector("#countCart").textContent = 1;
-            }
-            setItems(productInfo);
-        }
-        
-        // Storage
-        function setItems(productInfo) {
-            console.log("set items run");
-            
-            let cartItems = sessionStorage.getItem("productsInCart");
-            cartItems = JSON.parse(cartItems);
-            console.log(cartItems, "ok");
-            if (cartItems != null) {
-                if(cartItems[productInfo.id]== undefined){
-                    cartItems = {
-                        ...cartItems,
-                        [productInfo.id]: productInfo
-                    }
-                }
-                cartItems[productInfo.id].inCart +=1;
-            } else {
-                productInfo.inCart = 1;
-                cartItems = {
-                    [productInfo.id]: productInfo
-                }
-            }
-            sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
-        }
-        // onload keep track basket
+// Counting number of stock product 
+function cartNumbers(productInfo) {
+    
+    let productNumbers = sessionStorage.getItem("cartNumbers");
+    productNumbers = parseInt(productNumbers);
+    
+    /* if (productNumbers){
+        sessionStorage.setItem("cartNumbers", productNumbers + 1);
+        document.querySelector("#countCart").textContent = productNumbers + 1;
+    } else {
+        sessionStorage.setItem("cartNumbers", 1);
+        document.querySelector("#countCart").textContent = 1;
+    } */
+    setItems(productInfo);
 
+}
+
+// Storage
+function setItems(productInfo) {
+    console.log("set items run");
+    
+    let cartItems = sessionStorage.getItem("productsInCart");
+    cartItems = JSON.parse(cartItems);
+    if (cartItems != null) {
+        if(cartItems[productInfo.id] == undefined){
+            cartItems = {
+                ...cartItems,
+                [productInfo.id]: productInfo
+            }
+        }
+        cartItems[productInfo.id].inCart +=1;
+    }else{
+        productInfo.inCart = 1;
+        cartItems = { // cartItems est un égal à un objet
+            [productInfo.id]: productInfo
+        }
+    }
+    sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
+
+    //Count
+    const resultOrinoco = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0);
+    console.log(resultOrinoco);
+    document.querySelector("#countCart").textContent = resultOrinoco;
+}
+
+
+function totalCost(productInfo){
+    
+    let cartCost = sessionStorage.getItem('totalCost');
+
+    if (cartCost != null){
+        cartCost = parseInt(cartCost);
+        sessionStorage.setItem("totalCost", cartCost + productInfo.price)
+    }else{
+        sessionStorage.setItem("totalCost", productInfo.price)
+    }
+    console.log("product price is", cartCost);
+
+}
+// onload keep track basket
 
 onLoadCartNumbers()
+
+const a = {
+    cart: {
+      items: {
+        A: {number: 'xxx', quantity: 1, price: 999}, 
+        B: {number: 'xxx', quantity: 3, price: 999}, 
+        C :{number: 'xxx', quantity: 2, price: 999} 
+      }
+    }
+  };
+  
+  const result = Object.keys(a.cart.items).reduce((sum, key) => sum + a.cart.items[key].quantity, 0);
+  console.log(result);
+
+  const resultTest = Object.keys(a.cart.items);
+  console.log(resultTest);
+
