@@ -51,7 +51,7 @@ const displayProduct = async() => {
         
         carts[i].addEventListener("click", (event)=>{
             event.preventDefault();
-            cartNumbers(productInfos[i]);
+            setItems(productInfos[i]);
             totalCost(productInfos[i]);
 
         })
@@ -69,23 +69,6 @@ const displayVarnish = () => {
             `<option value="${element}" id="p_varnish">${element}</option>`
         ))
     );
-}
-        
-// Counting number of stock product 
-function cartNumbers(productInfo) {
-    
-    let productNumbers = sessionStorage.getItem("cartNumbers");
-    productNumbers = parseInt(productNumbers);
-    
-    /* if (productNumbers){
-        sessionStorage.setItem("cartNumbers", productNumbers + 1);
-        document.querySelector("#countCart").textContent = productNumbers + 1;
-    } else {
-        sessionStorage.setItem("cartNumbers", 1);
-        document.querySelector("#countCart").textContent = 1;
-    } */
-    setItems(productInfo);
-
 }
 
 // Storage
@@ -111,9 +94,13 @@ function setItems(productInfo) {
     sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
 
     //Count
-    const resultOrinoco = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0);
+    const resultOrinoco = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0); // sum est l'accumulateur, obj current value c'est à dire la valeur du tableau sur laquelle l'accumulateur passe
+                    //on ajoute à chaque fois la nouvelle value dans l'accumulateur au reste dejà évalué (sum + obj)
+                    // ici on spécifie qu'on s'intéresse à cartItems.inCart, ce sont ces values à mettre dans l'accumulateur
     console.log(resultOrinoco);
     document.querySelector("#countCart").textContent = resultOrinoco;
+    //keep track of cart
+    sessionStorage.setItem("cartNumbers", resultOrinoco); 
 }
 
 
@@ -130,23 +117,8 @@ function totalCost(productInfo){
     console.log("product price is", cartCost);
 
 }
-// onload keep track basket
+// onload keep track cart
 
 onLoadCartNumbers()
 
-const a = {
-    cart: {
-      items: {
-        A: {number: 'xxx', quantity: 1, price: 999}, 
-        B: {number: 'xxx', quantity: 3, price: 999}, 
-        C :{number: 'xxx', quantity: 2, price: 999} 
-      }
-    }
-  };
-  
-  const result = Object.keys(a.cart.items).reduce((sum, key) => sum + a.cart.items[key].quantity, 0);
-  console.log(result);
-
-  const resultTest = Object.keys(a.cart.items);
-  console.log(resultTest);
 
