@@ -1,5 +1,6 @@
 import {onLoadCartNumbers} from './utils.js';
-
+import {numberWithSpace} from './utils.js';
+onLoadCartNumbers()
 //Recupérer API 
     let furnitures;
     let furnitureResult = document.querySelector(".row-cards");
@@ -47,9 +48,7 @@ import {onLoadCartNumbers} from './utils.js';
 
     // séparer les miliers pour les prix
     // utiliser Intl.NumberFormat
-    function numberWithSpace(x){
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
+    
     //export default numberWithSpace;
 
-    onLoadCartNumbers()
+    

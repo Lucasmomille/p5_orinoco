@@ -4,3 +4,7 @@ export function onLoadCartNumbers() {
         document.querySelector("#countCart").textContent = productNumbers;
     }
 }
+
+export function numberWithSpace(x){
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

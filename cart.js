@@ -9,13 +9,10 @@ function getProductInCart() {
 }
 
 
-console.log(cart)
-
 function displayCart() {
     getProductInCart();
     
     let productContainer = document.querySelector("#cart-tablebody");
-    console.log(productContainer)
     if (cart && productContainer){
         productContainer.innerHTML = "";
         Object.values(cart).map(item => {
@@ -32,7 +29,6 @@ function displayCart() {
     // Display total cost
     let total = document.querySelector("#total");
     let totalCost = JSON.parse(sessionStorage.getItem("totalCost"));
-    console.log(total);
     total.innerHTML = totalCost;
 
     // Remove all items
@@ -48,4 +44,44 @@ function displayCart() {
 }
 
 displayCart();
+
+
+/// Post form
+
+function sendOrder() {
+    getProductInCart();
+    const firstname = document.getElementById('user-firstname').value
+    const lastname = document.getElementById('user-lastname').value
+    const adress = document.getElementById('user-adress').value
+    const email = document.getElementById('user-mail').value
+    const city = document.getElementById('user-city').value
+  
+    const items = Object.values(cart). map(item => {item._id});
+    console.log(items)
+
+    
+
+    /* const order = {
+        contact: {
+          firstName: firstname,
+          lastName: lastname,
+          address: adress,
+          city: city,
+          email: email,
+        },
+        products: products,
+    }
+    console.log(product._id); */
+}
+
+sendOrder()
+
+function getId() {
+    getProductInCart();
+    let test = document.querySelector(".test");
+    test.innerHTML = Object.values(cart).map(item => `
+    <span>${item._id} </span>
+    `)
+}
+getId()
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="shortcut icon" type="image/jpeg" href="./img/favicon.jpg"/>
+    <link rel="shortcut icon" type="image/png" href="./img/logo.png"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <title>Panier Orinoco</title>
@@ -45,6 +45,7 @@
             <p>Total : <span class="subtotal" id="total"></span>€</p>
             
             <button id="delete-command">Supprimer la commande</button>
+            <div class="test"></div>
 
           </section>
           <section class="col-8">
@@ -62,10 +63,17 @@
                     <input type="email" class="form-control" id="user-mail" aria-describedby="emailHelp" placeholder="Mail">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
+                <div class="form-group">
+                  <label for="user-adress">Adresse</label>
+                  <input type="adress" class="form-control" id="user-adress" aria-describedby="adressHelp" placeholder="Adresse">
+              </div>
+              <div class="form-group">
+                <label for="user-city">Ville</label>
+                <input type="city" class="form-control" id="user-city" aria-describedby="cityHelp" placeholder="Ville">
+            </div>
                 <button class="btn btn-primary" id="confirm-command"> Commander </button>
             </form>
           </section>
-          <div class="test"></div>
         </div>
     </main>
     <footer class="container">

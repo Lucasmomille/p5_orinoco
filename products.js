@@ -1,9 +1,9 @@
 import {onLoadCartNumbers} from './utils.js';
+import {numberWithSpace} from './utils.js';
+onLoadCartNumbers()
 // Global variables
 let productId;
 let product;
-
-//import numberWithSpace from 'home.js';
 
 // Search the product ID in URL
 productId = new URL(window.location.href).searchParams.get('id'); // appeler l'url entière (.href) de la page et chercher info id
@@ -29,7 +29,7 @@ const displayProduct = async() => {
     cloneTemplate.getElementById("p_name").textContent = product.name;
     cloneTemplate.getElementById("p_img").src = product.imageUrl;
     cloneTemplate.getElementById("p_description").textContent = product.description;
-    cloneTemplate.getElementById("p_price").textContent = product.price + "€";
+    cloneTemplate.getElementById("p_price").textContent = numberWithSpace(product.price) + "€";
     document.querySelector(".row-product").appendChild(cloneTemplate);
     
     ///// Multiple choice varnish
@@ -39,7 +39,7 @@ const displayProduct = async() => {
     /// Stock info 
     let productInfos = [
         {"name": product.name, 
-        "id": product._id, 
+        "_id": product._id, 
         "price": product.price,
         "inCart": 0}
     ];
@@ -78,17 +78,17 @@ function setItems(productInfo) {
     let cartItems = sessionStorage.getItem("productsInCart");
     cartItems = JSON.parse(cartItems);
     if (cartItems != null) {
-        if(cartItems[productInfo.id] == undefined){
+        if(cartItems[productInfo._id] == undefined){
             cartItems = {
                 ...cartItems,
-                [productInfo.id]: productInfo
+                [productInfo._id]: productInfo
             }
         }
-        cartItems[productInfo.id].inCart +=1;
+        cartItems[productInfo._id].inCart +=1;
     }else{
         productInfo.inCart = 1;
         cartItems = { // cartItems est un égal à un objet
-            [productInfo.id]: productInfo
+            [productInfo._id]: productInfo
         }
     }
     sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
@@ -119,6 +119,6 @@ function totalCost(productInfo){
 }
 // onload keep track cart
 
-onLoadCartNumbers()
+
 
 
