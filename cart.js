@@ -56,12 +56,12 @@ function sendOrder() {
     const email = document.getElementById('user-mail').value
     const city = document.getElementById('user-city').value
   
-    const items = Object.values(cart). map(item => {item._id});
-    console.log(items)
+    const products = Object.values(cart).map(product => {return product._id});
+    console.log(products)
 
     
-
-    /* const order = {
+//// Renvoyer l'objet contact + array de string product._id
+    const order = {
         contact: {
           firstName: firstname,
           lastName: lastname,
@@ -71,17 +71,17 @@ function sendOrder() {
         },
         products: products,
     }
-    console.log(product._id); */
+    console.log(order);
 }
 
 sendOrder()
 
-function getId() {
+/* function getId() {
     getProductInCart();
     let test = document.querySelector(".test");
     test.innerHTML = Object.values(cart).map(item => `
     <span>${item._id} </span>
     `)
 }
-getId()
+getId() */
 
