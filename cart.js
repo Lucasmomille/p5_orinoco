@@ -48,13 +48,14 @@ displayCart();
 
 /// Post form
 
-function sendOrder() {
+function getOrder() {
     getProductInCart();
     const firstname = document.getElementById('user-firstname').value
     const lastname = document.getElementById('user-lastname').value
     const adress = document.getElementById('user-adress').value
     const email = document.getElementById('user-mail').value
     const city = document.getElementById('user-city').value
+
   
     const products = Object.values(cart).map(product => {return product._id});
     console.log(products)
@@ -74,14 +75,67 @@ function sendOrder() {
     console.log(order);
 }
 
-sendOrder()
+getOrder()
 
-/* function getId() {
-    getProductInCart();
-    let test = document.querySelector(".test");
-    test.innerHTML = Object.values(cart).map(item => `
-    <span>${item._id} </span>
-    `)
+
+///Check entries form
+const firstname = document.getElementById('user-firstname');
+const lastname = document.getElementById('user-lastname');
+const adress = document.getElementById('user-adress');
+const email = document.getElementById('user-mail');
+const city = document.getElementById('user-city');
+
+let regeXemail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+let regeXpostal = /[0-9]{5}(-[0-9]{4})?/;
+
+
+function validElt(elt) {
+    elt.classList.add = ("border-info", "shadow");
 }
-getId() */
+function invalidElt(elt) {
+    elt.classList.add = ("border-danger", "shadow");
+}
+function neutralElt(elt) {
+    console.log("ok");
+}
+/* function isEmail() {
+	if (email.value.match(regeXemail)) {
+        email.style.border = 'solid 1px green';
+        
+    } else {
+        email.classList.add = ("border-danger", "shadow");
+    }
+}
+isEmail() */
 
+function checkForm(elt, condition) {
+    elt.oninput = (e) => {
+      if (eval(condition)) {
+        validElt(e.target)
+      } else {
+        neutralElt(e.target)
+      }
+    }
+  
+    elt.onblur = (e) => {
+      if (!eval(condition)) {
+        invalidElt(e.target)
+      }
+    }
+}
+
+function checkSubmit() {
+    document.getElementById('confirm-command').onclick = (e) => {
+      e.preventDefault()
+      getOrder()
+    
+    console.log('ok')
+    checkForm(firstname, 'e.target.value.length > 1');
+    checkForm(lastname, 'e.target.value.length > 1');
+    checkForm(email, regeXemail + '.test(e.target.value)');
+    checkForm(adress, 'e.target.value.length > 6');
+    checkForm(city, 'e.target.value.length > 1');
+    }
+}
+
+checkSubmit();
