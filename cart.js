@@ -1,8 +1,12 @@
 
 import {onLoadCartNumbers} from './utils.js';
 import {validateEmail} from './form.js';
+import {checkSubmit} from './form.js';
+import {validateCode} from './form.js';
 onLoadCartNumbers();
 validateEmail();
+validateCode();
+checkSubmit();
 
 let cart;
 
