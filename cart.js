@@ -79,6 +79,24 @@ const getOrder = () => {
         products: products,
     }
     console.log(order);
+
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(order),
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    }
+
+    fetch("http://localhost:3000/api/furniture/order", requestOptions)
+    
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json)
+      localStorage.removeItem('shoppingCart')
+     /*  window.location.href = `${window.location.origin}/orderStatus.html?orderId=${json.orderId}`
+    }) */
+    .catch(() => {
+        alert(error)
+      })
 }
 
 getOrder()

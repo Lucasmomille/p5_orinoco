@@ -6,7 +6,7 @@
   <link rel="shortcut icon" type="image/png" href="./img/logo.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" type="text/css" href="./css/style.css"/>
-  <title>Panier Orinoco</title>
+  <title>Commande envoyée</title>
 </head>
 
 <body>
@@ -33,50 +33,8 @@
   <main class="container">
     <div class="row row-product">
       <section class="col-4">
-        <table class="table">
-          <thead>
-            <tr><th>Article</th><th>Quantité</th><th>Prix</th></tr>
-          </thead>
-          <tbody id="cart-tablebody">
-            
-          </tbody>
-        </table>
-        
-        <p>Total : <span class="subtotal" id="total"></span>€</p>
-        
-        <button id="delete-command">Supprimer la commande</button>
-        <!-- <div class="test"></div> -->
-        
-      </section>
-      <section class="col-8">
-        <form method="post" action="ordersend.html">
-          <div class="form-group">
-            <label for="user-firstname">Prénom</label>
-            <input type="text" class="form-control" id="user-firstname" aria-describedby="firstname">
-          </div>
-          <div class="form-group">
-            <label for="user-lastname">Nom</label>
-            <input type="text" class="form-control" id="user-lastname" aria-describedby="lastname">
-          </div>
-          <div class="form-group">
-            <label for="user-mail">Mail</label>
-            <input type="email" class="form-control" id="user-mail" aria-describedby="emailHelp" value="example@mail.com">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-            <label for="user-adress">Adresse</label>
-            <input type="text" class="form-control" id="user-adress" aria-describedby="adressHelp">
-          </div>
-          <div class="form-group">
-            <label for="user-code">Code postal</label>
-            <input type="text" class="form-control" id="user-code" aria-describedby="adressHelp">
-          </div>
-          <div class="form-group">
-            <label for="user-city">Ville</label>
-            <input type="text" class="form-control" id="user-city" aria-describedby="cityHelp">
-          </div>
-          <button class="btn btn-primary" id="confirm-command" type="submit"> Commander </button>
-        </form>
+        <h1>Votre commande a bien été envoyée, merci !</h1>
+        <p>Votre identifiant : <span id="orderId"></span></p>
       </section>
     </div>
   </main>
