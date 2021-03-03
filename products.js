@@ -1,5 +1,4 @@
 import {onLoadCartNumbers} from './utils.js';
-import {numberWithSpace} from './utils.js';
 onLoadCartNumbers()
 // Global variables
 let productId;
@@ -29,7 +28,7 @@ const displayProduct = async() => {
     cloneTemplate.getElementById("p_name").textContent = product.name;
     cloneTemplate.getElementById("p_img").src = product.imageUrl;
     cloneTemplate.getElementById("p_description").textContent = product.description;
-    cloneTemplate.getElementById("p_price").textContent = numberWithSpace(product.price) + "€";
+    cloneTemplate.getElementById("p_price").textContent = new Intl.NumberFormat().format(product.price) + "€";
     document.querySelector(".row-product").appendChild(cloneTemplate);
     
     ///// Multiple choice varnish

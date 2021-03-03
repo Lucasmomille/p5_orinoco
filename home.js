@@ -1,12 +1,9 @@
 import {onLoadCartNumbers} from './utils.js';
-import {numberWithSpace} from './utils.js';
 onLoadCartNumbers()
 //Recupérer API 
     let furnitures;
     let furnitureResult = document.querySelector(".row-cards");
-    let productsResult = document.querySelector(".row-product");
-    console.log(furnitureResult);
-    console.log (productsResult);
+   // let productsResult = document.querySelector(".row-product");
 
     const fetchFurniture = async() => {
         furnitures = await fetch("http://localhost:3000/api/furniture")
@@ -19,9 +16,8 @@ onLoadCartNumbers()
 ///Afficher les produits
     const showFurnitures = async() => {
         await fetchFurniture(); // on attends l'API
-        furnitureResult.innerHTML = ( // on mets les données souhaitées dans la zone du html voulue
+        furnitureResult.innerHTML = (
             furnitures  // on sait ce qu'est furnitures dans fetchFurniture // let furnitures = fetchFurniture() avec datas
-                //.filter(furniture => furniture.name.toLowerCase())
                 .map(furniture => ( // for each furniture of furnitures en qq sorte, map fait un array
                     //templates literals
                     `
@@ -34,7 +30,7 @@ onLoadCartNumbers()
                                 <p class="card-title furniture__name" id="name">${furniture.name}</p>
                                 <p class="card-text furniture__varnish" id="varnish">${furniture.varnish}</p>
                                 <p class="card-text furniture__description" id="description">${furniture.description}</p>
-                                <p class="card-text furniture__price" id="test">${numberWithSpace(furniture.price)} €</p>
+                                <p class="card-text furniture__price" id="test">${new Intl.NumberFormat().format(furniture.price)} €</p>
                             </div>
                         </div>
                     </div> 
