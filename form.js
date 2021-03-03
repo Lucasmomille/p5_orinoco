@@ -41,7 +41,6 @@ export function checkSubmit() {
 }
 
 
-
 export function validateCode() {
     if (regexCode.test(code.value.toLowerCase())) {
         console.log("ok");
