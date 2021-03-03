@@ -40,7 +40,6 @@ export function checkSubmit() {
     validateEntry(city);
 }
 
-checkSubmit();
 
 
 export function validateCode() {
