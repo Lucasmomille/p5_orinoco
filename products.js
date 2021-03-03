@@ -1,12 +1,12 @@
 import {onLoadCartNumbers} from './utils.js';
 onLoadCartNumbers()
-// Global variables
+
+
 let productId;
 let product;
 
 // Search the product ID in URL
-productId = new URL(window.location.href).searchParams.get('id'); // appeler l'url entière (.href) de la page et chercher info id
-//new URL crée objet puisque URL est une classe
+productId = new URL(window.location.href).searchParams.get('id');
 const fetchProduct = async() => {
     product = await fetch(`http://localhost:3000/api/furniture/${productId}`)
     .then(response => response.json(), error => alert(error));
@@ -62,7 +62,6 @@ displayProduct();
 // Varnish choice
 const displayVarnish = () => {
     const varnishResult = document.querySelector(".varnish");
-    
     varnishResult.innerHTML = (
         product.varnish.map(element => (
             `<option value="${element}" id="p_varnish">${element}</option>`
@@ -76,15 +75,15 @@ function setItems(productInfo) {
     
     let cartItems = sessionStorage.getItem("productsInCart");
     cartItems = JSON.parse(cartItems);
-    if (cartItems != null) {
-        if(cartItems[productInfo._id] == undefined){
-            cartItems = {
+    if (cartItems != null) { // si le panier n'est pas vide
+        if(cartItems[productInfo._id] == undefined){ // si il n'est pas vide mais que l'id est undefined
+            cartItems = { //rajouter l'id de l'élement ajouté
                 ...cartItems,
                 [productInfo._id]: productInfo
             }
         }
-        cartItems[productInfo._id].inCart +=1;
-    }else{
+        cartItems[productInfo._id].inCart +=1; // si pas undefined alors rajouter 1
+    }else{ // si le panier est vide rajouter 1 et set l'id
         productInfo.inCart = 1;
         cartItems = { // cartItems est un égal à un objet
             [productInfo._id]: productInfo
@@ -92,16 +91,15 @@ function setItems(productInfo) {
     }
     sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
 
-    //Count
-    const resultOrinoco = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0); // sum est l'accumulateur, obj current value c'est à dire la valeur du tableau sur laquelle l'accumulateur passe
-                    //on ajoute à chaque fois la nouvelle value dans l'accumulateur au reste dejà évalué (sum + obj)
-                    // ici on spécifie qu'on s'intéresse à cartItems.inCart, ce sont ces values à mettre dans l'accumulateur
-    console.log(resultOrinoco);
+    //Count products in cart
+    const resultOrinoco = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0); // ici on spécifie qu'on s'intéresse à cartItems.inCart, ce sont ces values à mettre dans l'accumulateur
     document.querySelector("#countCart").textContent = resultOrinoco;
-    //keep track of cart
+    
+    //Keep track of cart
     sessionStorage.setItem("cartNumbers", resultOrinoco); 
 }
 
+// get cart's total cost 
 
 function totalCost(productInfo){
     
@@ -113,11 +111,4 @@ function totalCost(productInfo){
     }else{
         sessionStorage.setItem("totalCost", productInfo.price)
     }
-    console.log("product price is", cartCost);
-
 }
-// onload keep track cart
-
-
-
-

@@ -11,7 +11,7 @@ const code = document.getElementById('user-code');
 let regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 let regexCode = /[0-9]{5}(-[0-9]{4})?/;
 
-export function validateEmail() {
+export const validateEmail = () => {
     if (regexEmail.test(email.value.toLowerCase())) {
         console.log("ok");
         email.classList.add("border-success");
@@ -23,7 +23,7 @@ export function validateEmail() {
 
 validateEmail();
 
-export function validateEntry(elt) {
+export const validateEntry = (elt) => {
     console.log("run validate entry");
     if (elt.value.length > 1){
         elt.classList.add("border-success");
@@ -32,7 +32,7 @@ export function validateEntry(elt) {
     }
 }
 
-export function checkSubmit() {
+export const checkSubmit = () => {
     console.log("run checkSubmit");
     validateEntry(firstname);
     validateEntry(lastname);
@@ -41,11 +41,11 @@ export function checkSubmit() {
 }
 
 
-export function validateCode() {
+export const validateCode = () => {
     if (regexCode.test(code.value.toLowerCase())) {
         console.log("ok");
         code.classList.add("border-success");
-    } else {
+    }else{
         console.log("pas ok");
         code.classList.add("border-danger");
     }

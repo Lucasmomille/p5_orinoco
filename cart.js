@@ -1,21 +1,18 @@
 
 import {onLoadCartNumbers} from './utils.js';
-import {validateEmail} from './form.js';
-import {checkSubmit} from './form.js';
-import {validateCode} from './form.js';
+import * as form from './form.js';
 onLoadCartNumbers();
-validateEmail();
-validateCode();
-checkSubmit();
+form.validateEmail();
+form.validateCode();
+form.checkSubmit();
 
 let cart;
 
-function getProductInCart() {
+const getProductInCart = () => {
     cart = JSON.parse(sessionStorage.getItem("productsInCart"));
 }
 
-
-function displayCart() {
+const displayCart = () => {
     getProductInCart();
     
     let productContainer = document.querySelector("#cart-tablebody");
@@ -26,7 +23,7 @@ function displayCart() {
             <tr class="product"> 
             <th>${item.name}</th>
             <th>${item.inCart}</th>
-            <th>${item.price}</th>
+            <th>${new Intl.NumberFormat().format(item.price)}</th>
             </tr>
             `
         })
@@ -35,14 +32,13 @@ function displayCart() {
     // Display total cost
     let total = document.querySelector("#total");
     let totalCost = JSON.parse(sessionStorage.getItem("totalCost"));
-    total.innerHTML = totalCost;
+    total.innerHTML = new Intl.NumberFormat().format(totalCost);
 
     // Remove all items
     let btnDeleteFullCart = document.querySelector("#delete-command");
 
-    btnDeleteFullCart.addEventListener('click', function(){
+    btnDeleteFullCart.addEventListener('click', () => {
         sessionStorage.clear();
-        
         productContainer.innerHTML = "";
         total.innerHTML = "";
         document.querySelector("#countCart").textContent = "";
@@ -50,7 +46,6 @@ function displayCart() {
 }
 
 displayCart();
-
 
 /// Post form
 
@@ -62,12 +57,10 @@ const getOrder = () => {
     const email = document.getElementById('user-mail').value
     const city = document.getElementById('user-city').value
 
-  
     const products = Object.values(cart).map(product => {return product._id});
     console.log(products)
 
-    
-//// Renvoyer l'objet contact + array de string product._id
+ //// Renvoyer l'objet contact + array de string product._id
     const order = {
         contact: {
           firstName: firstname,
@@ -95,14 +88,14 @@ const getOrder = () => {
     }) 
     .catch(() => {
         alert(error)
-      }) 
+    }) 
 }
 
 //getOrder()
 
 const orderForm = document.getElementById("form");
 
-orderForm.addEventListener('submit', function(e){
+orderForm.addEventListener('submit', (e) => {
     e.preventDefault();
     getOrder()
 })
