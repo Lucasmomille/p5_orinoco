@@ -78,7 +78,7 @@ const getOrder = () => {
         },
         products: products,
     }
-    console.log(order);
+    //console.log(order);
 
     const requestOptions = {
         method: 'POST',
@@ -86,18 +86,23 @@ const getOrder = () => {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
     }
 
-   /*  fetch("http://localhost:3000/api/furniture/order", requestOptions)
-    
+    fetch("http://localhost:3000/api/furniture/order", requestOptions)
     .then((response) => response.json())
     .then((json) => {
       console.log(json)
-      localStorage.removeItem('shoppingCart')
-     /*  window.location.href = `${window.location.origin}/orderStatus.html?orderId=${json.orderId}`
-    }) */
-    /* .catch(() => {
+      sessionStorage.removeItem('shoppingCart')
+      window.location.href = `${window.location.origin}/ordersend.html?orderId=${json.orderId}`
+    }) 
+    .catch(() => {
         alert(error)
-      })  */
+      }) 
 }
 
-getOrder()
+//getOrder()
 
+const orderForm = document.getElementById("form");
+
+orderForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    getOrder()
+})
