@@ -86,7 +86,7 @@ const getOrder = () => {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
     }
 
-    fetch("http://localhost:3000/api/furniture/order", requestOptions)
+   /*  fetch("http://localhost:3000/api/furniture/order", requestOptions)
     
     .then((response) => response.json())
     .then((json) => {
@@ -94,9 +94,9 @@ const getOrder = () => {
       localStorage.removeItem('shoppingCart')
      /*  window.location.href = `${window.location.origin}/orderStatus.html?orderId=${json.orderId}`
     }) */
-    .catch(() => {
+    /* .catch(() => {
         alert(error)
-      })
+      })  */
 }
 
 getOrder()
