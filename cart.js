@@ -83,10 +83,10 @@ const getOrder = () => {
     .then((response) => response.json())
     .then((json) => {
       console.log(json)
-      sessionStorage.removeItem('shoppingCart')
+      sessionStorage.clear()
       window.location.href = `${window.location.origin}/ordersend.html?orderId=${json.orderId}`
     }) 
-    .catch(() => {
+    .catch((error) => {
         alert(error)
     }) 
 }
