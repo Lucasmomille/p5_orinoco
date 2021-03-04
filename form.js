@@ -21,7 +21,6 @@ export const validateEmail = () => {
     }
 }
 
-validateEmail();
 
 export const validateEntry = (elt) => {
     console.log("run validate entry");

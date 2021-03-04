@@ -1,7 +1,6 @@
 import {onLoadCartNumbers} from './utils.js';
 onLoadCartNumbers()
 
-
 let productId;
 let product;
 
@@ -12,13 +11,7 @@ const fetchProduct = async() => {
     .then(response => response.json(), error => alert(error));
 }
 
-/* main()
-async function main (){
-    await fetchProduct()
-    .then(function() {displayProduct();})
-    
-} */
-///////////////////////////////Display the selected product///////////////
+//////////////////Display the selected product///////////////
 
 const displayProduct = async() => {
     await fetchProduct();
@@ -59,7 +52,7 @@ const displayProduct = async() => {
 
 displayProduct();  
 
-// Varnish choice
+/////// Varnish choice
 const displayVarnish = () => {
     const varnishResult = document.querySelector(".varnish");
     varnishResult.innerHTML = (
@@ -69,7 +62,7 @@ const displayVarnish = () => {
     );
 }
 
-// Storage
+//////// Storage
 function setItems(productInfo) {
     console.log("set items run");
     
@@ -91,12 +84,12 @@ function setItems(productInfo) {
     }
     sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
 
-    //Count products in cart
-    const resultOrinoco = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0); // ici on spécifie qu'on s'intéresse à cartItems.inCart, ce sont ces values à mettre dans l'accumulateur
-    document.querySelector("#countCart").textContent = resultOrinoco;
+    ///////Count products in cart
+    const totalProducts = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0); // ici on spécifie qu'on s'intéresse à cartItems.inCart, ce sont ces values à mettre dans l'accumulateur
+    document.querySelector("#countCart").textContent = totalProducts;
     
     //Keep track of cart
-    sessionStorage.setItem("cartNumbers", resultOrinoco); 
+    sessionStorage.setItem("cartNumbers", totalProducts); 
 }
 
 // get cart's total cost 

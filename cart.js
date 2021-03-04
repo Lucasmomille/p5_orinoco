@@ -71,7 +71,6 @@ const getOrder = () => {
         },
         products: products,
     }
-    //console.log(order);
 
     const requestOptions = {
         method: 'POST',
