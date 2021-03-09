@@ -1,9 +1,9 @@
 
 import {onLoadCartNumbers} from './utils.js';
 import * as form from './form.js';
-//import { checkSubmit } from './test.js';
+form.checkSubmit();
 onLoadCartNumbers();
-form.checkSubmit()
+
 let cart;
 
 const getProductInCart = () => {
@@ -81,7 +81,7 @@ const getOrder = () => {
     .then((json) => {
       console.log(json)
       sessionStorage.clear()
-      //window.location.href = `${window.location.origin}/ordersend.html?orderId=${json.orderId}`
+      window.location.href = `${window.location.origin}/ordersend.html?orderId=${json.orderId}`
     }) 
     .catch((error) => {
         alert(error)

@@ -26,74 +26,18 @@ export const validateEmail = () => {
 const validateEntry = (elt) => {
     console.log("run validate entry");
     elt.addEventListener("input", function() {
-        if (elt.value.length > 1){
+        if (elt.value.length > 0){
+            elt.classList.remove("border-danger");
             elt.classList.add("border-success");
+            
+            console.log("value ok")
         } else {
-            elt.classList.add("border-danger")
+            console.log("erreur")
+            elt.classList.remove("border-success");
+            elt.classList.add("border-danger");
         }
     })
-    
 }
-
-/* export const test = (elt) => {
-    console.log("run validate entry");
-    elt.onfocus = (e) => {
-      if (e.target.value.length > 1){
-          console.log("onfocus success")
-          e.target.classList.add("border-success");
-      } else {
-        console.log("onfocus loose")
-        e.target.classList.add("border-info");
-      }
-    }
-    elt.onblur = (e) => {
-        if (e.target.value.length > 1) {
-            console.log("onblur ok donc rouge")
-            e.target.classList.add("border-danger");
-    }/* else {
-        console.log("oblur nope bleu ou vert")
-        e.target.classList.add("border-success");
-    } */
-/*  }
-} */ 
-
-/* export const test = (elt) => {
-    elt.onfocus = (e) => {
-        console.log(e.target.value +"success")
-        if (e.target.value.length > 1){
-            e.target.classList.add("border-success");
-        }
-    }
-
-    elt.onblur = (e) => {
-        console.log(e.target.value +"nope")
-        e.target.classList.add("border-danger")
-    }
-}
- */
-/* const testA = (elt, condition) => {
-    elt.onfocus = (e) => {
-        if (eval(condition)){
-            console.log("onfocus success")
-            e.target.classList.remove("border-danger");
-            e.target.classList.add("border-success");
-            
-        } else {
-          console.log("onfocus loose")
-          e.target.classList.add("border-info");
-        }
-      }
-      elt.onblur = (e) => {
-          if (!eval(condition)) {
-              console.log("onblur ok donc rouge")
-              e.target.classList.add("border-danger");
-              e.target.classList.remove("border-success")
-      } *//* else {
-          console.log("oblur nope bleu ou vert")
-          e.target.classList.add("border-success");
-      } */
-/*    }
-} */ 
 
 export const validateCode = () => {
     code.addEventListener("input", function() {
