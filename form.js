@@ -1,4 +1,3 @@
-
 ///Check entries form
 const firstname = document.getElementById('user-firstname');
 const lastname = document.getElementById('user-lastname');
@@ -15,16 +14,15 @@ export const validateEmail = () => {
     email.addEventListener("input", function() {
         if (regexEmail.test(email.value.toLowerCase())) {
             email.classList.add("border-success");
+            email.classList.remove("border-danger");
         } else {
-            console.log("email pas ok");
             email.classList.add("border-danger");
+            email.classList.remove("border-success");
         }
     })
-    
 }
 
 const validateEntry = (elt) => {
-    console.log("run validate entry");
     elt.addEventListener("input", function() {
         if (elt.value.length > 0){
             elt.classList.remove("border-danger");
@@ -43,26 +41,19 @@ export const validateCode = () => {
     code.addEventListener("input", function() {
         if (regexCode.test(code.value.toLowerCase())) {
             code.classList.add("border-success");
-        }else{
+            code.classList.remove("border-danger");
+        } else {
             code.classList.add("border-danger");
+            code.classList.remove("border-success");
         }
     })
-    
 }
 
 export const checkSubmit = () => {
-    console.log("run checkSubmit");
-    //form.addEventListener("input", function(){
         validateEntry(firstname);
         validateEntry(lastname);
         validateEntry(adress);
         validateEntry(city);
         validateCode();
         validateEmail();
-    //})
-  
-    //test(firstname);
 }
-
-// if check my iput == true
-// compter queryselector all border succss et si == 5 alors true

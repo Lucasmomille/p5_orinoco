@@ -92,6 +92,5 @@ const orderForm = document.getElementById("form");
 
 orderForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
     getOrder()
 })
