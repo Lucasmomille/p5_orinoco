@@ -35,14 +35,14 @@ const displayProduct = async() => {
         "price": product.price,
         "inCart": 0}
     ];
-    /// Counting
+    /// Set session storage
     
     let carts = document.querySelectorAll(".btn");
     
     for (let i=0; i < carts.length; i++){
         
-        carts[i].addEventListener("click", (event)=>{
-            event.preventDefault();
+        carts[i].addEventListener("click", (e)=>{
+            e.preventDefault();
             setItems(productInfos[i]);
             totalCost(productInfos[i]);
 
@@ -62,30 +62,28 @@ const displayVarnish = () => {
     );
 }
 
-//////// Storage
+//////// Set selectd products in the storage
 function setItems(productInfo) {
-    console.log("set items run");
-    
     let cartItems = sessionStorage.getItem("productsInCart");
     cartItems = JSON.parse(cartItems);
-    if (cartItems != null) { // si le panier n'est pas vide
-        if(cartItems[productInfo._id] == undefined){ // si il n'est pas vide mais que l'id est undefined
-            cartItems = { //rajouter l'id de l'élement ajouté
+    if (cartItems != null) { 
+        if(cartItems[productInfo._id] == undefined){ 
+            cartItems = { 
                 ...cartItems,
                 [productInfo._id]: productInfo
             }
         }
-        cartItems[productInfo._id].inCart +=1; // si pas undefined alors rajouter 1
-    }else{ // si le panier est vide rajouter 1 et set l'id
+        cartItems[productInfo._id].inCart +=1; 
+    }else{ 
         productInfo.inCart = 1;
-        cartItems = { // cartItems est un égal à un objet
+        cartItems = { 
             [productInfo._id]: productInfo
         }
     }
     sessionStorage.setItem("productsInCart", JSON.stringify(cartItems));
 
     ///////Count products in cart
-    const totalProducts = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0); // ici on spécifie qu'on s'intéresse à cartItems.inCart, ce sont ces values à mettre dans l'accumulateur
+    const totalProducts = Object.keys(cartItems).reduce((sum, obj) => sum + cartItems[obj].inCart, 0); 
     document.querySelector("#countCart").textContent = totalProducts;
     
     //Keep track of cart

@@ -5,11 +5,11 @@ const adress = document.getElementById('user-adress');
 const email = document.getElementById('user-mail');
 const city = document.getElementById('user-city');
 const code = document.getElementById('user-code');
-const form = document.getElementById('form');
 
 let regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 let regexCode = /[0-9]{5}(-[0-9]{4})?/;
 
+/// Check email
 export const validateEmail = () => {
     email.addEventListener("input", function() {
         if (regexEmail.test(email.value.toLowerCase())) {
@@ -22,21 +22,21 @@ export const validateEmail = () => {
     })
 }
 
+
+///// Check other entries
 const validateEntry = (elt) => {
     elt.addEventListener("input", function() {
         if (elt.value.length > 0){
             elt.classList.remove("border-danger");
             elt.classList.add("border-success");
-            
-            console.log("value ok")
         } else {
-            console.log("erreur")
             elt.classList.remove("border-success");
             elt.classList.add("border-danger");
         }
     })
 }
 
+//// Check postal code
 export const validateCode = () => {
     code.addEventListener("input", function() {
         if (regexCode.test(code.value.toLowerCase())) {

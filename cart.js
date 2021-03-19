@@ -54,9 +54,8 @@ const getOrder = () => {
     const adress = document.getElementById('user-adress').value
     const email = document.getElementById('user-mail').value
     const city = document.getElementById('user-city').value
-
+    
     const products = Object.values(cart).map(product => {return product._id});
-    console.log(products)
 
  //// Renvoyer l'objet contact + array de string product._id
     const order = {
