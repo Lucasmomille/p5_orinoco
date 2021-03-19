@@ -1,4 +1,4 @@
-import {onLoadCartNumbers} from './utils.js';
+import {onLoadCartNumbers} from './p5_12_utils.js';
 onLoadCartNumbers()
 //Recupérer API 
     let furnitures;
@@ -19,7 +19,7 @@ const showFurnitures = async() => {
             `
             <div class="col-12 col-lg-4">
                 <div class="card furniture mb-3">
-                    <a class="furniture__link" href="product.html?id=${furniture._id}" id="${furniture._id}"> 
+                    <a class="furniture__link" href="p5_04_product.html?id=${furniture._id}" id="${furniture._id}"> 
                     <img src="${furniture.imageUrl}" alt="meuble en chêne" class="card-img-top furniture__img">
                     </a>
                     <div class="card-body" id="test">

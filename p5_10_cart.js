@@ -1,6 +1,6 @@
 
-import {onLoadCartNumbers} from './utils.js';
-import * as form from './form.js';
+import {onLoadCartNumbers} from './p5_12_utils.js';
+import * as form from './p5_09_form.js';
 form.checkSubmit();
 onLoadCartNumbers();
 
@@ -80,7 +80,7 @@ const getOrder = () => {
     .then((json) => {
       console.log(json)
       sessionStorage.clear()
-      window.location.href = `${window.location.origin}/ordersend.html?orderId=${json.orderId}`
+      window.location.href = `${window.location.origin}/p5_06_ordersend.html?orderId=${json.orderId}`
     }) 
     .catch((error) => {
         alert(error)
