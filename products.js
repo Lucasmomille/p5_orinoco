@@ -1,4 +1,4 @@
-import {onLoadCartNumbers} from './p5_12_utils.js';
+import {onLoadCartNumbers} from './utils.js';
 onLoadCartNumbers()
 
 let productId;
